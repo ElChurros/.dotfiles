@@ -68,7 +68,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -nb "$darkwhite" -nf "$darkblack" 
 #bindsym XF86Explorer exec --no-startup-id opera
 
 # Load new wallpaper and color scheme
-bindsym $mod+Shift+w exec --no-startup-id wal --backend colorz -i ~/Pictures/i3Wallpapers/
+bindsym $mod+Shift+w exec --no-startup-id wal --backend colorz --saturate 0.5 -i ~/Pictures/i3Wallpapers/
 
 #lock
 bindsym $mod+l exec --no-startup-id i3lock-fancy-rapid 5 3
@@ -81,17 +81,17 @@ bindsym $mod+space exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3keyboa
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-set $screenshotMode "ScreenShot: [f]ull screen, [s]election, [w]indow"
+set $screenshotMode "ScreenShot: [f]ull screen, [w]indow, or run 'i3-scrot -s' in a terminal to select a screen region"
 mode $screenshotMode {
   bindsym f exec --no-startup-id i3-scrot -d
-  bindsym s exec --no-startup-id i3-scrot -s
+  #bindsym s exec i3-scrot -s Zone selection with -s option doesnt work when launched from i3.
   bindsym w exec --no-startup-id i3-scrot -w
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
 
-bindsym $mod+Insert mode $screenshotMode
+bindsym Print mode $screenshotMode
 
 
 
@@ -299,11 +299,11 @@ for_window [class="feh"] move position center
 ### Scratchpad
 bindcode $mod+Shift+22 floating enable; resize set 675 400; move position center ; move scratchpad
 bindcode $mod+22 scratchpad show
-for_window [title="dropdown"] floating enable
-for_window [title="dropdown"] resize set 675 450
-for_window [title="dropdown"] move position center
-for_window [title="dropdown"] move scratchpad
-exec --no-startup-id terminator --title=dropdown
+for_window [class="dropdown"] floating enable
+for_window [class="dropdown"] resize set 675 450
+for_window [class="dropdown"] move position center
+for_window [class="dropdown"] move scratchpad
+exec --no-startup-id alacritty --class=Alacritty,dropdown
 
 ## Opera screen capture window
 for_window [id="31750"] floating enable
@@ -405,9 +405,9 @@ set_from_resource $cyan		color14 #000000
 set_from_resource $darkwhite	color7  #000000
 set_from_resource $white	color15 #000000
 set $transparent		#00000000
-set $i3bar_background           #000000A0
+set $i3bar_background           #00000070
 set $focused_background         #000000A0
-set $unfocused_background       #00000020
+set $unfocused_background       #00000000
 set $urgent_background          #C00000C0
 
 hide_edge_borders both
@@ -419,11 +419,11 @@ hide_edge_borders both
 #client.urgent		$darkred	$darkred	$black		$darkred		$darkred
 #client.background $black
 
-#                       BORDER		BACKGROUND	         TEXT		INDICATOR   CHILD_BORDER
-client.focused		$transparent		$focused_background	$magenta	$darkmagenta		$darkblue
-client.unfocused	$transparent	$unfocused_background		$white		$darkblue		$darkblack
-client.focused_inactive	$transparent	$unfocused_background		$white		$darkblue		$darkblack
-client.urgent		$darkred	$darkred	$black		$darkred		$darkred
+#                       BORDER		BACKGROUND              TEXT		INDICATOR               CHILD_BORDER
+client.focused		$transparent	$focused_background     $magenta	$darkmagenta		$darkblue
+client.unfocused	$transparent	$unfocused_background	$white		$darkblue		$darkblue
+client.focused_inactive	$transparent	$unfocused_background	$white		$darkblue		$darkblack
+client.urgent		$darkred	$darkred	        $black		$darkred		$darkred
 client.background $black
 
 ### STATUS BAR SECTION ###
@@ -439,7 +439,7 @@ bar {
         status_command i3blocks -c ~/.dotfiles/i3/i3blocks/config
         colors {
 			background $i3bar_background
-			statusline $darkwhite
+			statusline $da80white
 			separator  $cyan
 			focused_workspace  $blue $darkblue $darkblack
         		active_workspace   $blue $blue $darkwhite
@@ -468,9 +468,9 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous ; exec pkill -RTMI
 
 ### GAPS SECTION ###
 
-smart_gaps on
+#smart_gaps on
 
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 
 gaps inner 10
 gaps outer 0
