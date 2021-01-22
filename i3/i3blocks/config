@@ -35,6 +35,8 @@ label=
 command=~/.dotfiles/i3/i3blocks/scripts/i3blocks-spotify/spotify.py
 color=#81b71a
 interval=5
+signal=10
+
 
 
 # Volume indicator

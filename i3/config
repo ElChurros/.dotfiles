@@ -461,6 +461,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ~/.dotfiles/i3/i3blocks/script
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3volume --up ; exec pkill -RTMIN+12 i3blocks
 bindsym XF86AudioMute exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3volume --togmute ; exec pkill -RTMIN+12 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3mic -togmute ; exec pkill -RTMIN+13 i3blocks
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next ; exec pkill -RTMIN+10 i3blocks
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous ; exec pkill -RTMIN+10 i3blocks
 
 
 ### GAPS SECTION ###
