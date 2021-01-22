@@ -1,0 +1,56 @@
+#!/bin/bash
+
+getCurrentBatteryA() {
+	acpi -b |  grep -o '[0-9]\+%' | tr -d '%' | sed -n 1p
+}
+
+getCurrentBatteryB() {
+	acpi -b |  grep -o '[0-9]\+%' | tr -d '%' | sed -n 2p
+}
+
+getCurrentState() {
+	acpi -b | grep -wo "Full\|Charging\|Discharging"
+}
+
+curA=`getCurrentBatteryA`
+curB=`getCurrentBatteryB`
+state=`getCurrentState`
+
+full=""
+short=""
+
+color=""
+status=0
+icon=""
+
+if [[ $curA -lt 15 ]] || [[ curB -lt 15 ]] ; then		# de 0% à 15%
+	color="#ff0000"
+	icon=""
+elif [[ $curA -lt 25 ]] || [[ curB -lt 25 ]] ; then	# de 15 à 25%
+	color="#ff6100"
+	icon=""
+elif [[ $curA -lt 50 ]] || [[ curB -lt 50 ]] ; then # de 25 à 50%
+	color="ffd000"
+	icon=""
+elif [[ $curA -lt 75 ]] || [[ curB -lt 75 ]] ; then	# de 50 à 75%
+	color="#bbff00"
+	icon=""
+else													# de 75 à 100%
+	color="#00a500"
+	icon=""
+fi
+if [[ $state == "Charging" ]] || [[ $state == "Full" ]] ; then
+	icon=""
+	color="#00a500"
+fi
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+full="A:$curA% B:$curB% $icon"
+short="$cur"
+
+echo $full
+echo $short
+echo $color
+exit $status

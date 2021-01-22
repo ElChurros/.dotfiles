@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  pactl set-source-volume 1 +5%
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+  pactl set-source-mute 1 toggle
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  pactl set-source-volume 1 -5%
+# Scroll up
+elif [[ "${BLOCK_BUTTON}" -eq 4 ]]; then
+  pactl set-source-volume 1 +5%
+# Scroll down
+elif [[ "${BLOCK_BUTTON}" -eq 5 ]]; then
+  pactl set-source-volume 1 -5%
+elif [[ "$1" == "-togmute" ]]; then
+        pactl set-source-mute 1 toggle
+        pkill -RTMIN+13 i3blocks
+fi
+
+getStatus() {
+  echo "$1" |grep "Mute:" | grep -wo "yes"
+}
+
+getVolume() {
+  echo "$1" | grep "Volume:" | awk '{print $5}' | sed -n 3p | tr -d '[]%'
+}
+
+statusLine=$(pactl list sources)
+MicStatus=`getStatus "${statusLine}"`
+volume=`getVolume "${statusLine}"`
+
+full=""
+short=""
+color=""
+status=0
+
+
+if [[ "${MicStatus}" == "yes" ]]; then
+  icon=""
+  full="${volume}% ${icon}"
+else
+  icon=""
+  full='<span foreground="#FF0000">'${icon}'</span><sup>'${volume}%'</sup>'
+fi
+
+
+echo $full
+echo $short
+echo $color
+exit $status

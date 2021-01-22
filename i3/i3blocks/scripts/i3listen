@@ -1,0 +1,16 @@
+#!/bin/bash
+
+volumeSig="pkill -RTMIN+12 i3blocks"
+batterySig="pkill -RTMIN+14 i3blocks"
+sub="ac_adapter"
+
+acpi_listen | while IFS= read -r line;
+do
+        if [ "$line" = "jack/headphone HEADPHONE plug" ] || [ "$line" = "jack/headphone HEADPHONE unplug" ];
+        then
+                $volumeSig;
+        elif [[ $line =~ $sub ]];
+        then
+                $batterySig;
+        fi
+done

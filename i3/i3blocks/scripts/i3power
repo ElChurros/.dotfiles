@@ -1,0 +1,25 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	#left click
+	1) i3-nagbar -t warning -m 'You pressed the shutdown button. Do you really want to shutdown?' -b 'Yes, shutdown now' 'shutdown now' > /dev/null;;
+
+	# right click
+	3) i3-nagbar -t warning -m 'You pressed the suspend button. Do you really want to suspend?' -b 'Yes, suspend now' 'systemctl suspend' > /dev/null;;
+
+esac
+
+full=""
+short=""
+color=""
+status=0
+icon=""
+
+
+full="$icon"
+short="$icon"
+
+echo $full
+echo $short
+echo $color
+exit $status

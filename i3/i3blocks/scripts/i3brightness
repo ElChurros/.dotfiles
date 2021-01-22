@@ -1,0 +1,42 @@
+#!/bin/bash
+
+newsig="pkill -RTMIN+15 i3blocks"
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  xbacklight -inc 5
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  xbacklight -dec 5
+# Scroll up
+elif [[ "${BLOCK_BUTTON}" -eq 4 ]]; then
+  xbacklight -inc 5
+# Scroll down
+elif [[ "${BLOCK_BUTTON}" -eq 5 ]]; then
+    xbacklight -dec 5
+fi
+
+case "$1" in
+        "--up") xbacklight -inc 5 ; $newsig ;;
+        "--down") xbacklight -dec 5 ; $newsig ;;
+esac
+
+full=""
+short=""
+color=""
+status=0
+
+getBrightness() {
+	        xbacklight -get | awk -F '.' '{print $1}'
+}
+
+brightness=`getBrightness`
+icon=""
+
+full="$brightness% $icon"
+short="$brightness"
+
+echo $full
+echo $short
+echo $color
+exit $status
