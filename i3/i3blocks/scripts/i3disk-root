@@ -1,0 +1,38 @@
+#!/bin/bash
+
+
+getCurrentArchUsage() {
+	df -h | grep /dev/nvme0n1p3 | awk '{print $3}' | cut -dG -f1
+}
+
+getCurrentArchPercent() {
+	df -h | grep /dev/nvme0n1p3 | awk '{print $3}' | cut -dG -f1
+}
+
+curArch=`getCurrentArchUsage`
+curPercent=`getCurrentArchPercent`
+
+full=""
+short=""
+color=""
+status=0
+icon=""
+
+if [[ $curArch -lt 5 ]]; then		# de 0 à 5 Go disponibles
+	color="#ff0000"
+elif [[ $curArch -lt 15 ]]; then	# de 5 à 15 Go disponibles
+	color="#ff6100"
+else
+	color="#00a500"
+fi
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+full="/: $curPercent% $icon"
+short="$cur"
+
+echo $full
+echo $short
+echo $color
+exit $status

@@ -1,19 +1,17 @@
 #!/bin/bash
 
 
-newsig="pkill -RTMIN+14 i3blocks"
-
 getCurrentHomeUsage() {
 	df -h | grep /home | awk '{print $3}' | cut -dG -f1
 }
 getCurrentArchUsage() {
-	df -h | grep /dev/nvme0n1p3 | awk '{print $3}' | cut -dG -f1
+	df -h | grep $2 | awk '{print $3}' | cut -dG -f1
 }
 getHomeSize() {
-	df -h | grep /home | awk '{print $2}' | cut -dG -f1
+	df -h | grep $1 | awk '{print $2}' | cut -dG -f1
 }
 getArchSize() {
-	df -h | grep /dev/nvme0n1p3 | awk '{print $2}' | cut -dG -f1
+	df -h | grep $2 | awk '{print $2}' | cut -dG -f1
 }
 
 curHome=`getCurrentHomeUsage`
@@ -38,7 +36,7 @@ fi
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-full="$icon/home: $curHome/$homeSize Go   $icon/ $curArch/$archSize Go"
+full="$icon/home: $curHome/$homeSize Go | $icon/ $curArch/$archSize Go"
 short="$cur"
 
 echo $full

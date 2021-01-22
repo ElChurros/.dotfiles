@@ -121,8 +121,12 @@ interval=30
 signal=14
 
 # Disk usage
-[disk]
-command=~/.dotfiles/i3/i3blocks/scripts/i3disk
+[disk-home]
+command=~/.dotfiles/i3/i3blocks/scripts/i3disk-home
+interval=30
+
+[disk-arch]
+command=~/.dotfiles/i3/i3blocks/scripts/i3disk-root
 interval=30
 
 # Date Time

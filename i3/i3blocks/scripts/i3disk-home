@@ -1,0 +1,38 @@
+#!/bin/bash
+
+
+getCurrentHomeUsage() {
+	df -h | grep home | awk '{print $3}' | cut -dG -f1
+}
+
+getCurrentHomePercent() {
+	df -h | grep home | awk '{print $3}' | cut -dG -f1
+}
+
+curHome=`getCurrentHomeUsage`
+curPercent=`getCurrentHomePercent`
+
+full=""
+short=""
+color=""
+status=0
+icon=""
+
+if [[ $curHome -lt 5 ]]; then		# de 0 à 5 Go disponibles
+	color="#ff0000"
+elif [[ $curHome -lt 15 ]]; then	# de 5 à 15 Go disponibles
+	color="#ff6100"
+else
+	color="#00a500"
+fi
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+full="/home: $curPercent% $icon"
+short="$cur"
+
+echo $full
+echo $short
+echo $color
+exit $status
