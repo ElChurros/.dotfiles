@@ -24,14 +24,14 @@ font pango:FiraMono 10, FontAwesome5Free 10, FontAwesome5Brands 10
 
 #for rofi opacity
 #exec --no-startup-id compton
-#exec --no-startup-id picom -b
+exec --no-startup-id picom -b
 
 #polybar
 #exec_always --no-startup-id $HOME/.dotfiles/polybar/launch.sh
 #exec --no-startup-id i3listen
 
 #restore previous wallpaper configuration
-exec wal -R
+exec --no-startup-id wal -R
 
 exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3listen
 
@@ -59,7 +59,8 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$darkwhite" -nf "$darkblack" -sb "$darkblack" -sf "$darkwhite"
+#bindsym $mod+d exec --no-startup-id dmenu_run
 #bindsym $mod+d exec --no-startup-id rofi -show run
 #bindsym XF86Search exec --no-startup-id rofi -show run
 

@@ -6,7 +6,7 @@
 "fish/config.fish" = "~/.config/fish/config.fish"
 
 [picom.files]
-"picom/config" = "~/.config/picom.comf"
+"picom/config" = "~/.config/picom.conf"
 
 [alacritty.files]
 "alacritty/alacritty.yml" = "~/.alacritty.yml"
