@@ -3,6 +3,8 @@
 "fish/config.fish" = "/home/arthur/.config/fish/config.fish"
 "i3/config" = "/home/arthur/.config/i3/config"
 "i3/i3blocks/config" = "/home/arthur/.config/i3blocks/config"
+"i3-scrot/config" = "/home/arthur/.config/i3-scrot.conf"
+"libinput-gestures/config" = "/home/arthur/.config/libinput-gestures.conf"
 "picom/config" = "/home/arthur/.config/picom.conf"
 
 [templates]
