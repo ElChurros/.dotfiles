@@ -420,8 +420,8 @@ hide_edge_borders both
 #client.background $black
 
 #                       BORDER		BACKGROUND              TEXT		INDICATOR               CHILD_BORDER
-client.focused		$transparent	$focused_background     $magenta	$darkmagenta		$darkblue
-client.unfocused	$transparent	$unfocused_background	$white		$darkblue		$darkblue
+client.focused		$transparent	$focused_background     $magenta	$red    		$black
+client.unfocused	$transparent	$unfocused_background	$white		$red	        	$black
 client.focused_inactive	$transparent	$unfocused_background	$white		$darkblue		$darkblack
 client.urgent		$darkred	$darkred	        $black		$darkred		$darkred
 client.background $black

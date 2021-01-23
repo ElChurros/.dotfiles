@@ -13,3 +13,6 @@
 
 [alacritty.files]
 "alacritty/alacritty.yml" = "~/.alacritty.yml"
+
+[libinput-gestures.files]
+"libinput-gestures/config" = "~/.config/libinput-gestures.conf"
