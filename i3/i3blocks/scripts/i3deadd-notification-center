@@ -1,0 +1,21 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	#left click
+	1) kill -s USR1 $(pidof deadd-notification-center)
+esac
+
+full=""
+short=""
+color=""
+status=0
+icon=""
+
+
+full="$icon"
+short="$icon"
+
+echo $full
+echo $short
+echo $color
+exit $status

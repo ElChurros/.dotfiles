@@ -16,3 +16,7 @@
 
 [libinput-gestures.files]
 "libinput-gestures/config" = "~/.config/libinput-gestures.conf"
+
+[deadd-notification-center.files]
+"deadd-notification-center/deadd.conf" = "~/.config/deadd/deadd.conf"
+"deadd-notification-center/deadd.css" = "~/.config/deadd/deadd.css"

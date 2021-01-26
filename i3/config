@@ -30,6 +30,9 @@ exec --no-startup-id picom -b
 #exec_always --no-startup-id $HOME/.dotfiles/polybar/launch.sh
 #exec --no-startup-id i3listen
 
+# notification deamon
+exec --no-startup-id deadd-notification-center 
+
 #restore previous wallpaper configuration
 exec --no-startup-id wal -R
 
@@ -37,9 +40,10 @@ exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3listen
 
 exec --no-startup-id nm-applet
 
-exec_always --no-startup-id ~/.dotfiles/i3/scripts/i3-swipe/i3swipe.py
+#exec_always --no-startup-id ~/.dotfiles/i3/scripts/i3-swipe/i3-swipe.py
+exec_always libinput-gestures-setup restart
 
-exec_always --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 
 exec --no-startup-id start-pulseaudio-x11
 
@@ -83,9 +87,9 @@ bindsym $mod+space exec --no-startup-id ~/.dotfiles/i3/i3blocks/scripts/i3keyboa
 
 set $screenshotMode "ScreenShot: [f]ull screen, [w]indow, or run 'i3-scrot -s' in a terminal to select a screen region"
 mode $screenshotMode {
-  bindsym f exec --no-startup-id i3-scrot -d
-  #bindsym s exec i3-scrot -s Zone selection with -s option doesnt work when launched from i3.
-  bindsym w exec --no-startup-id i3-scrot -w
+  bindsym w exec --no-startup-id i3-scrot -w ~/Pictures/Screenshots/$(date +%s).png && notify-send "Screen captured" ; mode "default"
+  bindsym s exec --no-startup-id maim -s -u ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png && notify-send "Screen captured" ; mode "default"
+  bindsym f exec --no-startup-id maim -u ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png && notify-send "Screen captured" ; mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -93,6 +97,9 @@ mode $screenshotMode {
 
 bindsym Print mode $screenshotMode
 
+# Screencast
+bindsym $mod+Print exec --no-startup-id notify-send "On air" && bash -c "ffmpeg -video_size 1920x1080 -f x11grab -i :0.0 -f pulse -ac 2 -i default $HOME/Videos/Screencast/$(date +%s).mp4"
+bindsym $mod+Escape exec pkill ffmpeg && notify-send "Screencast saved"
 
 
 ### FOCUS SECTION ###

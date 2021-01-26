@@ -103,13 +103,7 @@ function volMuteStatus {
 
 # Left click
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-  volUp
-# Middle click
-elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
   volMuteStatus
-# Right click
-elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
-  volDown
 # Scroll up
 elif [[ "${BLOCK_BUTTON}" -eq 4 ]]; then
   volUp

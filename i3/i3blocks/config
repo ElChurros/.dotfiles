@@ -142,6 +142,11 @@ interval=5
 command=~/.dotfiles/i3/i3blocks/scripts/i3power
 interval=once
 
+# Notification center
+[notifications]
+command=~/.dotfiles/i3/i3blocks/scripts/i3deadd-notification-center
+interval=once
+
 # Generic media player support
 #
 # This displays "ARTIST - SONG" if a music is playing.

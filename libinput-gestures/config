@@ -140,8 +140,8 @@
 ###############################################################################
 
 # GNOME SHELL open/close overview (works for GNOME on Xorg only)
-gesture pinch in	xdotool key super+p
-gesture pinch out	xdotool key super+s
+#gesture pinch in	xdotool key super+p
+#gesture pinch out	xdotool key super+s
 
 # KDE Plasma open/close overview
 # gesture pinch in	xdotool key ctrl+F9
@@ -200,10 +200,34 @@ gesture pinch out	xdotool key super+s
 # CUSTOM SETTINGS # CUSTOM SETTINGS # CUSTOM SETTINGS # CUSTOM SETTINGS # CUSTOM SETTINGS # 
 ###########################################################################################
 
-# 
-gesture swipe left 3 i3-msg workspace prev_on_output
-gesture swipe right 3 i3-msg workspace next_on_output
 
+# Available actions
+#     swipe up
+#     swipe down
+#     swipe left
+#     swipe right
+#     swipe left_up
+#     swipe left_down
+#     swipe right_up
+#     swipe right_down
+#     pinch in
+#     pinch out
+#     pinch clockwise
+#     pinch anticlockwise
 
-gesture swipe left 4 i3-msg move workspace to output left
-gesture swipe right 4 i3-msg move workspace to output right
+# 3 fingers swipes : move focus 
+gesture swipe up 3 i3-msg focus up
+gesture swipe down 3 i3-msg focus down
+gesture swipe left 3 i3-msg focus left
+gesture swipe right 3 i3-msg focus right
+
+# 4 fingers swipes left & right : go to next/prev workspace
+gesture swipe left 4 i3-msg workspace prev_on_output
+gesture swipe right 4 i3-msg workspace next_on_output
+
+# 4 fingers swipe down : kill window
+gesture swipe up 4 i3-msg kill
+
+# 4 fingers swipe up_left
+gesture swipe left_down 3 i3-msg scratchpad show
+gesture swipe right_down 3 i3-msg scratchpad show

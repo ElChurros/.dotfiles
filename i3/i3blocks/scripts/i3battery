@@ -21,6 +21,9 @@ icon=""
 if [[ $currentBattery -lt 15 ]]; then		# de 0% à 15%
 	color="#ff0000"
 	icon=""
+	if [[ $state == "Discharging" ]] ; then
+		notify-send "Battery low" "Battery level is $currentBattery%" 
+	fi
 elif [[ $currentBattery -lt 25 ]]; then	# de 15 à 25%
 	color="#ff6100"
 	icon=""
@@ -38,6 +41,10 @@ if [[ $state == "Charging" ]] || [[ $state == "Full" ]] ; then
 	icon=""
 	color="#00a500"
 fi
+if [[ $state == "Full" ]] ; then
+	notify-send "Battery full" "$currentBattery%"
+fi
+
 
 bold=$(tput bold)
 normal=$(tput sgr0)
